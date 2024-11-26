@@ -1,0 +1,33 @@
+<div class="container mt-4">
+    <h2 class="text-center">Residences</h2>
+    <div *ngIf="alertMessage" class="alert alert-{{ alertType }} alert-dismissible fade show" role="alert">
+        {{ alertMessage }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+            (click)="closeAlert()"></button>
+    </div>
+    <div class="mb-3">
+        <input type="text" class="form-control" placeholder="Search by address..." [(ngModel)]="searchAddress" />
+    </div>
+    <div class="card mb-3" *ngFor="let residence of filteredResidences()">
+
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img [src]="residence.image" (error)="onImageError($event)" class="card-img-top"
+                    alt="Image of {{ residence.name }}">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{ residence.name }}</h5>
+                    <p class="card-text">
+                        <span *ngIf="residence.status === 'Disponible'" class="badge bg-success">Disponible</span>
+                        <span *ngIf="residence.status === 'En Construction'" class="badge bg-warning text-dark">En
+                            Construction</span>
+                        <span *ngIf="residence.status === 'Vendu'" class="badge bg-danger">Vendu</span>
+                    </p>
+                    <button class="btn btn-primary me-2" (click)="showLocation(residence)">Show Location</button>
+                    <button class="btn btn-outline-success" (click)="likeResidence(residence)">Like</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

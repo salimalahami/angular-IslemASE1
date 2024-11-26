@@ -1,0 +1,54 @@
+<div class="container mt-5">
+  <h1 class="text-center mb-4">{{ title }}</h1>
+
+  <div class="mb-3">
+    <input 
+      type="number" 
+      class="form-control" 
+      placeholder="Search by age" 
+      [(ngModel)]="searchAge" 
+    />
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-striped table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let person of user">
+          <td *ngIf="person.age > searchAge">{{ person.id }}</td>
+          <td *ngIf="person.age > searchAge">{{ person.name }}</td>
+          <td *ngIf="person.age > searchAge">{{ person.age }}</td>
+          <td *ngIf="person.age > searchAge">{{ person.email }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Button -->
+  <div class="text-center mt-3">
+    <button (click)="show()" class="btn btn-info">Click me</button>
+  </div>
+
+  <!-- Property binding -->
+  <div class="mt-4">
+    <p 
+      class="p-3 text-center text-white" 
+      [style.backgroundColor]="color"
+    >
+      Property bind
+    </p>
+    <input 
+      type="text" 
+      class="form-control mt-2" 
+      placeholder="Enter color" 
+      [(ngModel)]="color" 
+    />
+  </div>
+</div>
